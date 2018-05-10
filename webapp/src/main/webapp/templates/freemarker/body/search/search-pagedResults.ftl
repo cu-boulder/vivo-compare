@@ -1,13 +1,42 @@
-<#-- $This file is distributed under the terms of the license in /doc/license.txt$ -->
+<#--
+Copyright (c) 2012, Cornell University
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimer in the documentation
+      and/or other materials provided with the distribution.
+    * Neither the name of Cornell University nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 
 <#-- Template for displaying paged search results -->
 
-<h2 class="searchResultsHeader">
+<h2>
 <#escape x as x?html>
-    ${i18n().search_results_for} '${querytext}'
-    <#if classGroupName?has_content>${i18n().limited_to_type} '${classGroupName}'</#if>
-    <#if typeName?has_content>${i18n().limited_to_type} '${typeName}'</#if>
+    Search results for '${querytext}'
+    <#if classGroupName?has_content>limited to type '${classGroupName}'</#if>
+    <#if typeName?has_content>limited to type '${typeName}'</#if>
 </#escape>
+<img id="downloadIcon" src="images/download-icon.png" alt="Download Results" title="Download Results" />
+</h2>
+
 <script type="text/javascript">
 	var url = window.location.toString();	
 	if (url.indexOf("?") == -1){
@@ -20,35 +49,46 @@
 	var urlsBase = '${urls.base}';
 </script>
 
-	<img id="downloadIcon" src="images/download-icon.png" alt="Download Results" title="Download Results" />
-<#-- <span id="downloadResults" style="float:left"></span>  -->
-</h2>
-
-<span id="searchHelp"><a href="${urls.base}/searchHelp" title="${i18n().search_help}">${i18n().not_expected_results}</a></span>
+<span id="searchHelp">
+    <a href="${urls.base}/searchHelp" title="search help">Not the results you expected?</a>
+</span>
 <div class="contentsBrowseGroup">
 
     <#-- Refinement links -->
     <#if classGroupLinks?has_content>
         <div class="searchTOC">
-            <h4>${i18n().display_only}</h4>           
-            <ul>           
-            <#list classGroupLinks as link>
-                <li><a href="${link.url}" title="${i18n().class_group_link}">${link.text}</a><span>(${link.count})</span></li>
-            </#list>
-            </ul>           
-        </div>
+             <div class="searchTOC" id="expertsmap" style="width: 75.5%; margin: 10px 4px 0px 0px;font-size:10pt;color:black;"> <!-- why is this style hardcoded?? -->
+                 <!--[IF !lte IE 8]> -->
+                 <a href="/expertsmap#${querytext}%7C100%7C0">
+                        <img style="position: absolute; margin-top:-25px; margin-left:-90px; width:55px; height:55px; float:left" alt="new feature" src="/themes/cu-boulder/expertsmap/new.png">
+                        <img style="width:180px; height:110px; margin-top: -25px; margin-left: -28px; z-index: -1; float:left" alt="experts map" src="/themes/cu-boulder/expertsmap/expertmap2.png">
+                 </a>
+                 <a href="/expertsmap#${querytext}%7C100%7C0">View results in CU Experts Map</a>
+                 <!-- <![endif]-->
+             </div> <!-- end searchTOC -->
+             <h4>Narrow the results to:</h4>
+             <ul>
+                 <#list classGroupLinks as link>
+                     <li><a href="${link.url}" title="class group link">${link.text}</a></li>
+                 </#list>
+             </ul>
+             <div class="searchTOC" style="width: 75.5%; margin: 10px 4px 0px 0px;font-size:10pt;color:black;">
+                For <b>equipment and analytical services</b>, if the desired results were not found, please check back as they are actively updated or
+                contact the <a href="mailto:industry@colorado.edu">Office of Industry Collaboration</a>
+             </div> <!-- end searchTOC -->
+        </div> <!-- end searchTOC -->
     </#if>
 
     <#if classLinks?has_content>
         <div class="searchTOC">
             <#if classGroupName?has_content>
-                <h4>${i18n().limit} ${classGroupName} to</h4>
+                <h4>Narrow ${classGroupName} to</h4>
             <#else>
-                <h4>${i18n().limit_to}</h4>
+                <h4>Narrow to</h4>
             </#if>
             <ul>           
             <#list classLinks as link>
-                <li><a href="${link.url}" title="${i18n().class_link}">${link.text}</a><span>(${link.count})</span></li>
+                <li><a href="${link.url}" title="class link">${link.text}</a></li>
             </#list>
             </ul>
         </div>
@@ -68,15 +108,15 @@
     <#if (pagingLinks?size > 0)>
         <div class="searchpages">
             Pages: 
-            <#if prevPage??><a class="prev" href="${prevPage}" title="${i18n().previous}">${i18n().previous}</a></#if>
+            <#if prevPage??><a class="prev" href="${prevPage}" title="previous">Previous</a></#if>
             <#list pagingLinks as link>
                 <#if link.url??>
-                    <a href="${link.url}" title="${i18n().page_link}">${link.text}</a>
+                    <a href="${link.url}" title="page link">${link.text}</a>
                 <#else>
                     <span>${link.text}</span> <#-- no link if current page -->
                 </#if>
             </#list>
-            <#if nextPage??><a class="next" href="${nextPage}" title="${i18n().next_capitalized}">${i18n().next_capitalized}</a></#if>
+            <#if nextPage??><a class="next" href="${nextPage}" title="next">Next</a></#if>
         </div>
     </#if>
     <br />

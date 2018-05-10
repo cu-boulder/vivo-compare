@@ -110,6 +110,12 @@
             <a href="${profileUrl(statement.uri("authorship"))}" title="${i18n().missing_info_resource}">${i18n().missing_info_resource}</a>
         </#if>
     </#local>
+ 
+    <#local DOI>
+      <#if statement.doi??>
+        <a href="http://dx.doi.org/${statement.doi}>${statement.doi}</a>
+      </#if>
+    </#local>
 
     <#local altMetric>
         <#if altmetricEnabled??>
@@ -125,6 +131,6 @@
         </#if>
     </#local>
 
-    ${resourceTitle} ${citationDetails} <@dt.yearSpan "${statement.dateTime!}" /> ${altMetric}
+    ${resourceTitle} ${citationDetails} <@dt.yearSpan "${statement.dateTime!}" /> ${DOI} ${altMetric}
 </#if>
 </#macro>

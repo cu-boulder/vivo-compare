@@ -39,7 +39,7 @@
                 <#if (class.uri?contains("FacultyMember")) >
                     <#assign foundClassGroup = true />
                     <#if (class.individualCount > 0) >
-                        <script>var facultyMemberCount = ${class.individualCount?string?replace(",","")?replace(".","")};</script>
+                        <script>var facultyMemberCount = ${class.individualCount?string?replace(",","")};</script>
                     <#else>
                         <script>var facultyMemberCount = 0;</script>
                     </#if>
@@ -165,7 +165,8 @@ var academicDepartments = [
     <#list academicDeptDG as resultRow>
         <#assign uri = resultRow["theURI"] />
         <#assign label = resultRow["name"] />
-        {"uri": "${uri?url}", "name": "${label}"}<#if (resultRow_has_next)>,</#if>
+        <#assign localName = uri?substring(uri?last_index_of("/")) />
+            {"uri": "${localName}", "name": "${label}"}<#if (resultRow_has_next)>,</#if>
     </#list>        
 </#if>
 ];
@@ -178,7 +179,7 @@ var urlsBase = "${urls.base}";
 <#-- as the leaflet javascript library.                                     -->
 <#macro geographicFocusHtml>
     <section id="home-geo-focus" class="home-sections">
-        <h4>${i18n().geographic_focus}</h4>
+        <h4>International Activities</h4>
         <#-- map controls allow toggling between multiple map types: e.g., global, country, state/province. -->
         <#-- VIVO default is for only a global display, though the javascript exists to support the other   -->
         <#-- types. See map documentation for additional information on how to implement additional types.  -->

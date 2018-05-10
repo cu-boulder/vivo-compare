@@ -8,11 +8,13 @@
 <#else>
     <h3>Search Tips</h3>        
 </#if>
+
 <ul class="searchTips">
     <li>Keep it simple! Use short, single terms unless your searches are returning too many results.</li>
     <li>Use quotes to search for an entire phrase -- e.g., "<i>protein folding</i>".</li>
     <li>Except for boolean operators, searches are <strong>not</strong> case-sensitive, so "Geneva" and "geneva" are equivalent</li>
     <li>If you are unsure of the correct spelling, put ~ at the end of your search term -- e.g., <i>cabage~</i> finds <i>cabbage</i>, <i>steven~</i> finds <i>Stephen</i> and <i>Stefan</i> (as well as other similar names).</li>
+    <li>For <b>equipment and analytical services</b>, if the desired results were not found, please check back as they are actively updated or contact the <a href="mailto:industry@colorado.edu">Office of Industry Collaboration</a>.</li>
 </ul>
     
 <h4><a id="advTipsLink" href="#">Advanced Tips</a></h4>    
@@ -34,9 +36,8 @@ ${stylesheets.add('<link rel="stylesheet" href="${urls.base}/css/search.css" />'
            $('a#closeLink').click(function() {
               $('ul#advanced').css("visibility","hidden"); 
               $('a#closeLink').css("visibility","hidden");
-              return false;
            });
-           return false;
+
         });
     });
     
