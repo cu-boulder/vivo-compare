@@ -3,13 +3,14 @@
 //This class is responsible for the product-specific form processing/content selection that might be possible
 //Overrides the usual behavior of selecting the specific JavaScript class needed to convert the form inputs
 //into a JSON object for submission based on the page content type
+//VIVO Specific version includes individuals for classes data getter in addition to the others
+//The internal class specific processor class is in VIVO, while all other javascript files are in Vitro
 
-//This will need to be overridden or extended, what have you.. in VIVO
 var processDataGetterUtils = {
 		dataGetterProcessorMap:{"browseClassGroup": processClassGroupDataGetterContent, 
 								"sparqlQuery": processSparqlDataGetterContent, 
 								"fixedHtml":processFixedHTMLDataGetterContent,
-								"individualsForClasses":processIndividualsForClassesDataGetterContent,
+								"internalClass":processInternalClassDataGetterContent,
 								"searchIndividuals":processSearchDataGetterContent},
 	    selectDataGetterType:function(pageContentSection) {
 			var contentType = pageContentSection.attr("contentType");
@@ -19,19 +20,20 @@ var processDataGetterUtils = {
 				//Is ALL NOT selected and there are other classes, pick one
 				//this SHOULD be an array
 				var allClassesSelected = pageContentSection.find("input[name='allSelected']:checked");
-				//If all NOT selected then need to pick a different content type
-				if(allClassesSelected.length == 0) {
-					contentType = "individualsForClasses";
+				var isInternalSelected = pageContentSection.find("input[name='display-internalClass']:checked");
+				//If all NOT selected then need to pick a different content type OR if internal class selected
+				if( isInternalSelected.length > 0 || allClassesSelected.length == 0) {
+					contentType = "internalClass";
 				}
 			} 
 			
 			return contentType;
 	    },
 	    isRelatedToBrowseClassGroup:function(contentType) {
-	    	return (contentType == "browseClassGroup" || contentType == "individualsForClasses");
+	    	return (contentType == "browseClassGroup" || contentType == "internalClass");
 	    },
 	    getContentTypeForCloning:function(contentType) {
-	    	if(contentType == "browseClassGroup" || contentType == "individualsForClasses") {
+	    	if(contentType == "browseClassGroup" || contentType == "internalClass") {
 	    		return "browseClassGroup";
 	    	} 
 	    	return contentType;

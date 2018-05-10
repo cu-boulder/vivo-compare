@@ -6,18 +6,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vivoweb</groupId>
-    <artifactId>vitro-project</artifactId>
+    <artifactId>vivo-project</artifactId>
     <version>1.9.3</version>
     <packaging>pom</packaging>
 
-    <name>Vitro</name>
-    <description>Vitro semantic web application project</description>
+    <name>VIVO</name>
+    <description>VIVO project</description>
     <url>http://vivoweb.org/</url>
 
     <licenses>
         <license>
             <name>BSD 3-Clause License</name>
-            <url>https://raw.github.com/vivo-project/Vitro/develop/LICENSE</url>
+            <url>https://raw.github.com/vivo-project/VIVO/develop/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -49,31 +49,42 @@
        snapshots into the snapshot repository below.
     -->
     <scm>
-        <connection>scm:git:git@github.com:vivo-project/Vitro.git</connection>
-        <developerConnection>scm:git:git@github.com:vivo-project/Vitro.git</developerConnection>
-        <url>git@github.com:vivo-project/Vitro.git</url>
+        <connection>scm:git:git@github.com:vivo-project/VIVO.git</connection>
+        <developerConnection>scm:git:git@github.com:vivo-project/VIVO.git</developerConnection>
+        <url>git@github.com:vivo-project/VIVO.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <properties>
+        <vitro-version>${project.version}</vitro-version>
+        <vivo-dir>${basedir}</vivo-dir>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <build.timestamp>${maven.build.timestamp}</build.timestamp>
     </properties>
 
     <modules>
         <module>api</module>
-        <module>dependencies</module>
         <module>webapp</module>
-        <module>solr</module>
         <module>home</module>
     </modules>
 
     <profiles>
         <profile>
+            <id>vitro</id>
+            <activation>
+                <file>
+                    <exists>../Vitro/pom.xml</exists>
+                </file>
+            </activation>
+            <modules>
+                <module>../Vitro</module>
+            </modules>
+        </profile>
+        <profile>
             <id>installer</id>
             <activation>
                 <property>
-                    <name>!vitro-installer-dir</name>
+                    <name>!vivo-installer-dir</name>
                 </property>
             </activation>
             <modules>
@@ -84,11 +95,11 @@
             <id>external-installer</id>
             <activation>
                 <property>
-                    <name>vitro-installer-dir</name>
+                    <name>vivo-installer-dir</name>
                 </property>
             </activation>
             <modules>
-                <module>${vitro-installer-dir}</module>
+                <module>${vivo-installer-dir}</module>
             </modules>
         </profile>
         <profile>
@@ -106,18 +117,6 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <executions>
                             <execution>
@@ -131,6 +130,18 @@
                             <quiet>true</quiet>
                             <additionalparam>${javadoc.opts}</additionalparam>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -155,10 +166,63 @@
                             <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>buildnumber-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>create</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <doCheck>false</doCheck>
+                            <doUpdate>false</doUpdate>
+                            <shortRevisionLength>7</shortRevisionLength>
+                            <revisionOnScmFailure>true</revisionOnScmFailure>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vitro-api</artifactId>
+                <version>${vitro-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vitro-api</artifactId>
+                <version>${vitro-version}</version>
+                <type>test-jar</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vitro-dependencies</artifactId>
+                <version>${vitro-version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vitro-home</artifactId>
+                <version>${vitro-version}</version>
+                <type>tar.gz</type>
+            </dependency>
+            <dependency>
+                <groupId>org.vivoweb</groupId>
+                <artifactId>vitro-webapp</artifactId>
+                <version>${vitro-version}</version>
+                <type>war</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -169,24 +233,6 @@
                     <source>1.7</source>
                     <target>1.7</target>
                     <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <doCheck>false</doCheck>
-                    <doUpdate>false</doUpdate>
-                    <shortRevisionLength>7</shortRevisionLength>
-                    <revisionOnScmFailure>true</revisionOnScmFailure>
                 </configuration>
             </plugin>
         </plugins>
@@ -248,6 +294,10 @@
         </pluginManagement>
     </build>
 
+    <!--
+        Add a custom repository, which is actually just a simple GitHub project
+        in order to distribute some dependencies that aren't part of Maven central
+    -->
     <repositories>
         <repository>
             <id>vivo-dependencies</id>

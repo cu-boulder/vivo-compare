@@ -6,42 +6,72 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vivoweb</groupId>
-    <artifactId>vitro-api</artifactId>
+    <artifactId>vivo-api</artifactId>
     <version>1.9.3</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>org.vivoweb</groupId>
-        <artifactId>vitro-project</artifactId>
+        <artifactId>vivo-project</artifactId>
         <version>1.9.3</version>
         <relativePath>..</relativePath>
     </parent>
 
-    <name>Vitro API</name>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <name>VIVO API</name>
 
     <dependencies>
         <dependency>
             <groupId>org.vivoweb</groupId>
+            <artifactId>vitro-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vivoweb</groupId>
             <artifactId>vitro-dependencies</artifactId>
-            <version>1.9.3</version>
             <type>pom</type>
         </dependency>
+
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>2.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>2.5.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.vivoweb.dependencies</groupId>
+            <artifactId>agrovocws</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vivoweb.dependencies</groupId>
+            <artifactId>oim.vivo.scimapcore</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vivoweb</groupId>
+            <artifactId>orcid-api-client</artifactId>
+            <version>0.6.0-hc425</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -62,15 +92,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.easymock</groupId>
-            <artifactId>easymock</artifactId>
-            <version>3.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
+            <groupId>org.vivoweb</groupId>
+            <artifactId>vitro-api</artifactId>
+            <type>test-jar</type>
             <scope>test</scope>
         </dependency>
     </dependencies>

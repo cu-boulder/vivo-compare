@@ -6,26 +6,39 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vivoweb</groupId>
-    <artifactId>vitro-webapp</artifactId>
+    <artifactId>vivo-webapp</artifactId>
     <version>1.9.3</version>
     <packaging>war</packaging>
 
     <parent>
         <groupId>org.vivoweb</groupId>
-        <artifactId>vitro-project</artifactId>
+        <artifactId>vivo-project</artifactId>
         <version>1.9.3</version>
         <relativePath>..</relativePath>
     </parent>
 
-    <name>Vitro Web App</name>
+    <name>VIVO Web App</name>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
                     <archiveClasses>false</archiveClasses>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.vivoweb</groupId>
+                            <artifactId>vitro-webapp</artifactId>
+                            <type>war</type>
+                        </overlay>
+                    </overlays>
                     <webResources>
                         <resource>
                             <directory>src/main/webResources</directory>
@@ -34,13 +47,28 @@
                     </webResources>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>overlays</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>org.vivoweb</groupId>
-            <artifactId>vitro-api</artifactId>
+            <artifactId>vitro-webapp</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.vivoweb</groupId>
+            <artifactId>vivo-api</artifactId>
             <version>1.9.3</version>
         </dependency>
     </dependencies>

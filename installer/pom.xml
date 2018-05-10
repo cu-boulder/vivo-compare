@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vivoweb</groupId>
-    <artifactId>vitro-installer</artifactId>
+    <artifactId>vivo-installer</artifactId>
     <version>1.9.3</version>
     <packaging>pom</packaging>
 
-    <name>Vitro Installer</name>
+    <name>VIVO Installer</name>
 
     <properties>
         <vitro-version>${project.version}</vitro-version>
@@ -53,12 +53,12 @@
                     <version>1.8</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.5.5</version>
-                </plugin>
-                <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.5.5</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -117,18 +117,18 @@
             </dependency>
             <dependency>
                 <groupId>org.vivoweb</groupId>
-                <artifactId>vitro-home</artifactId>
+                <artifactId>vivo-home</artifactId>
                 <version>${vitro-version}</version>
                 <type>tar.gz</type>
             </dependency>
             <dependency>
                 <groupId>org.vivoweb</groupId>
-                <artifactId>vitro-api</artifactId>
+                <artifactId>vivo-api</artifactId>
                 <version>${vitro-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.vivoweb</groupId>
-                <artifactId>vitro-webapp</artifactId>
+                <artifactId>vivo-webapp</artifactId>
                 <version>${vitro-version}</version>
                 <type>war</type>
             </dependency>
@@ -139,7 +139,7 @@
         <profile>
             <id>skip-install</id>
             <activation>
-                <property><name>!vitro-dir</name></property>
+                <property><name>!vivo-dir</name></property>
             </activation>
             <build>
                 <plugins>
@@ -170,6 +170,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
+                        <version>2.6</version>
                         <executions>
                             <execution>
                                 <id>default-resources</id>
@@ -205,7 +206,7 @@
         <profile>
             <id>install</id>
             <activation>
-                <property><name>vitro-dir</name></property>
+                <property><name>vivo-dir</name></property>
             </activation>
             <build>
                 <plugins>

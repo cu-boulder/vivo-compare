@@ -9,4 +9,4 @@
 
 <#assign propertyGroups = individual.propertyList>
 
-
+<#assign core = "http://vivoweb.org/ontology/core#">

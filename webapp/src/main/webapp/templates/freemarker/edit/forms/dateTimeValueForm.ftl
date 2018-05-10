@@ -5,18 +5,36 @@
 <#--Retrieve certain edit configuration information-->
 <#assign editMode = editConfiguration.pageData.editMode />
 <#assign htmlForElements = editConfiguration.pageData.htmlForElements />
+<#assign domainUri = editConfiguration.pageData.domainUri!"" />
 
 <#if editMode == "edit">        
         <#assign titleVerb="${i18n().edit_capitalized}">        
-        <#assign submitButtonText="${i18n().edit_date_time_value}">
         <#assign disabledVal="disabled">
+        <#assign submitButtonText="${i18n().save_changes}">
 <#else>
         <#assign titleVerb="${i18n().create_capitalized}">        
         <#assign submitButtonText="${i18n().create_date_time_value}">
         <#assign disabledVal=""/>
 </#if>
+<#if domainUri?contains("IAO_0000030")>        
+    <#assign titleObject="${i18n().publication_date_for}">  
+    <#if editMode == "edit">  
+        <#assign submitButtonText="${i18n().edit_publication_date}">
+    <#else>
+        <#assign submitButtonText="${i18n().create_publication_date}">
+    </#if>
+<#elseif domainUri?contains("AwardReceipt")>
+    <#assign titleObject="${i18n().year_awarded_for}">
+    <#if editMode == "edit">  
+        <#assign submitButtonText="${i18n().edit_year_awarded}">
+    <#else>
+        <#assign submitButtonText="${i18n().create_year_awarded}">
+    </#if>
+<#else>
+        <#assign titleObject="${i18n().date_time_value_for}">
+</#if>
 
-<h2>${titleVerb} ${i18n().date_time_value_for} ${editConfiguration.subjectName}</h2>
+<h2>${titleVerb} ${titleObject} ${editConfiguration.subjectName}</h2>
 
 <form class="customForm" action ="${submitUrl}" class="customForm">
 <#--Need to draw edit elements for dates here-->

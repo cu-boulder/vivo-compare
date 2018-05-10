@@ -2,10 +2,10 @@
 
 <#-- Default individual search view -->
 
-<#import "lib-properties.ftl" as p>
+<#import "lib-vivo-properties.ftl" as p>
 
-<a href="${individual.profileUrl}" title="${i18n().name}">${individual.name}</a>
+<a href="${individual.profileUrl}" title="${i18n().individual_name}">${individual.name}</a>
 
-<@p.mostSpecificTypes individual />
+<@p.displayTitle individual />
 
 <p class="snippet">${individual.snippet}</p>

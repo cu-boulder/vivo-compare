@@ -4,10 +4,14 @@
     <id>home</id>
     <formats>
         <format>tar.gz</format>
-        <!-- format>tar.bz2</format>
-        <format>zip</format -->
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <unpack>true</unpack>
+        </dependencySet>
+    </dependencySets>
     <fileSets>
         <fileSet>
             <directory>${project.basedir}</directory>
@@ -22,12 +26,5 @@
             <directory>${project.basedir}/src/main/resources</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
-        <!-- fileSet>
-            <directory>${project.build.directory}</directory>
-            <outputDirectory>/webapps</outputDirectory>
-            <includes>
-                <include>*.war</include>
-            </includes>
-        </fileSet -->
     </fileSets>
 </assembly>

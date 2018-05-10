@@ -6,28 +6,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vivoweb</groupId>
-    <artifactId>vitro-installer-home</artifactId>
+    <artifactId>vivo-installer-home</artifactId>
     <version>1.9.3</version>
     <packaging>pom</packaging>
 
     <parent>
         <groupId>org.vivoweb</groupId>
-        <artifactId>vitro-installer</artifactId>
+        <artifactId>vivo-installer</artifactId>
         <version>1.9.3</version>
         <relativePath>..</relativePath>
     </parent>
 
-    <name>Vitro Install Home</name>
+    <name>VIVO Install Home</name>
 
     <properties>
-        <default-theme>vitro</default-theme>
+        <default-theme>wilma</default-theme>
     </properties>
 
     <profiles>
         <profile>
             <id>install</id>
             <activation>
-                <property><name>vitro-dir</name></property>
+                <property><name>vivo-dir</name></property>
             </activation>
             <build>
                 <plugins>
@@ -59,7 +59,7 @@
                                 </goals>
                                 <configuration>
                                     <tasks>
-                                        <delete dir="${vitro-dir}/rdf" />
+                                        <delete dir="${vivo-dir}/rdf" />
                                     </tasks>
                                 </configuration>
                             </execution>
@@ -75,7 +75,7 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${vitro-dir}</outputDirectory>
+                                    <outputDirectory>${vivo-dir}</outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>${project.build.directory}/${project.build.finalName}</directory>
@@ -104,7 +104,7 @@
     <dependencies>
         <dependency>
             <groupId>org.vivoweb</groupId>
-            <artifactId>vitro-home</artifactId>
+            <artifactId>vivo-home</artifactId>
             <type>tar.gz</type>
         </dependency>
     </dependencies>

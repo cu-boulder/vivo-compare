@@ -1,2 +1,2 @@
 ${build.timestamp}
-Vitro ~ ${project.version} ~ ${buildNumber}
+VIVO ~ ${project.version} ~ ${buildNumber}

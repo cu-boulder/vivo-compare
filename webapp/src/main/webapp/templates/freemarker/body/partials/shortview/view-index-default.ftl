@@ -2,8 +2,10 @@
 
 <#-- Display of an individual in a list (on /individuallist and menu pages). -->
 
-<#import "lib-properties.ftl" as p>
+<#import "lib-vivo-properties.ftl" as p>
 
-<a href="${individual.profileUrl}" title="${i18n().name}">${individual.name}</a>
+<a href="${individual.profileUrl}" title="${i18n().individual_name}">${individual.name}</a>
 
-<@p.mostSpecificTypes individual  />
+<@p.displayTitle individual />
+
+<#-- add display of web pages? -->

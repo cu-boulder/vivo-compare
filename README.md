@@ -1,19 +1,41 @@
-# What is Vitro?
-Vitro is a general-purpose web-based ontology and instance editor with customizable public browsing. 
+# VIVO: Connect, Share, Discover
 
-Vitro is an integrated ontology editor and semantic web application.
+VIVO is an open source semantic web tool for research discovery -- finding people and the research they do.
 
-Vitro is a Java web application that runs in a Tomcat servlet container.
+VIVO supports editing, searching, browsing and visualizing research activity in order to discover people, programs, 
+facilities, funding, scholarly works and events. VIVO's search returns results faceted by type for rapid retrieval of 
+desired information across disciplines.
 
-With Vitro, you can:
+## Resources
 
-* Create or load ontologies in OWL format
-* Edit instances and relationships
-* Build a public web site to display your data
-* Search your data with Apache Solr
+### VIVO Project web site
+http://vivoweb.org/
 
-Vitro was originally developed at Cornell University, and is used as the core of the popular
-research and scholarship portal, [VIVO](http://vivoweb.org) .
+### VIVO Project Wiki
+https://wiki.duraspace.org/display/VIVO/
 
-For more information, contact the [VIVO community](http://www.vivoweb.org/support/user-feedback).
+### Installation Instructions
+
+Installation instructions for the latest release can be found at this location on the wiki:  
+https://wiki.duraspace.org/display/VIVODOC19x/Installing+VIVO#InstallingVIVO-Git
+
+## Contact us
+There are several ways to contact the VIVO community. 
+Whatever your interest, we would be pleased to hear from you.
+
+#### Contact form 
+http://vivoweb.org/support/user-feedback
+
+#### Mailing lists
+##### [vivo-all](https://groups.google.com/forum/#!forum/vivo-all) 
+This updates list provides news to the VIVO community of interest to all.
+
+##### [vivo-community](https://groups.google.com/forum/#!forum/vivo-community)  
+Join the VIVO community!  Here you'll find non-technical discussion regarding participation, the VIVO
+conference,  policy, project management, outreach, and engagement. 
+
+##### [vivo-tech](https://groups.google.com/forum/#!forum/vivo-tech)  
+The best place to get your hands dirty in the VIVO Project. 
+Developers and implementers frequent this list to get the latest on feature design, 
+development, implementation, and testing.
 
