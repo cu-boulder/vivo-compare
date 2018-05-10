@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.cornell.mannlib.vitro.webapp.reasoner.SimpleReasonerTest
+-------------------------------------------------------------------------------
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 1.572 sec

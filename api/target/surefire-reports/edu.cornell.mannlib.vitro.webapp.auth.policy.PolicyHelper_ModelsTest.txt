@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.cornell.mannlib.vitro.webapp.auth.policy.PolicyHelper_ModelsTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.142 sec
